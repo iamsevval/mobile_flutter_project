@@ -104,8 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.network(
-                'https://picsum.photos/id/119/800/200',
+              child: Image.asset(
+               'assets/banner.jpg',
                 height: 100,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
-                            child: Image.network(
+                            child: Image.asset(
                               product.imageUrl,
                               fit: BoxFit.cover,
                             ),

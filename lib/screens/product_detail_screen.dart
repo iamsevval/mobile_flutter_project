@@ -31,7 +31,7 @@ class ProductDetailScreen extends StatelessWidget {
                   color: Colors.grey[100],
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Image.network(product.imageUrl, fit: BoxFit.contain),
+                child: Image.asset(product.imageUrl, fit: BoxFit.contain),
               ),
             ),
             Padding(

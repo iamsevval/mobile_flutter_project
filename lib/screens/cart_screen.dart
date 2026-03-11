@@ -52,7 +52,7 @@ class _CartScreenState extends State<CartScreen> {
           leading: Container(
             width: 60, height: 60,
             decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(10)),
-            child: Image.network(product.imageUrl),
+            child: Image.asset(product.imageUrl),
           ),
           title: Text(product.title, style: const TextStyle(fontWeight: FontWeight.bold)),
           subtitle: Text('\$${product.price}'),

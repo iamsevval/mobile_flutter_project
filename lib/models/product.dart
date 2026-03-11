@@ -4,6 +4,7 @@ class Product {
   final String description;
   final double price;
   final String imageUrl;
+  bool isFavorite; 
 
   Product({
     required this.id,
@@ -11,9 +12,9 @@ class Product {
     required this.description,
     required this.price,
     required this.imageUrl,
+    this.isFavorite = false, 
   });
 
-  // 1. JSON verisini Dart nesnesine çevirme (fromJson)
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       id: json['id'],
@@ -21,10 +22,10 @@ class Product {
       description: json['description'],
       price: double.parse(json['price'].toString()),
       imageUrl: json['imageUrl'],
+      isFavorite: json['isFavorite'] ?? false,
     );
   }
 
-  // 2. Dart nesnesini JSON verisine çevirme (toJson)
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -32,6 +33,7 @@ class Product {
       'description': description,
       'price': price,
       'imageUrl': imageUrl,
+      'isFavorite': isFavorite,
     };
   }
 }
@@ -68,6 +70,7 @@ final List<Product> dummyProducts = [
   ),
 ];
 
+// Sepet Ürünü Modeli
 class CartItem {
   final Product product;
   int quantity;

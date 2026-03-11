@@ -9,7 +9,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  // Toplam fiyatı hesaplayan metod
   double getTotalPrice() {
     double total = 0;
     for (var item in globalCartItems) {
@@ -44,9 +43,23 @@ class _CartScreenState extends State<CartScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.shopping_cart_outlined, size: 100, color: Colors.grey[300]),
-          const SizedBox(height: 16),
-          const Text('Sepetiniz boş', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          const Text('Alışverişe başlamak için ürün ekleyin', style: TextStyle(color: Colors.grey)),
+          const SizedBox(height: 24),
+          const Text('Sepetiniz boş', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          const Text('Alışverişe başlamak için ürün ekleyin', style: TextStyle(color: Colors.grey, fontSize: 16)),
+          const SizedBox(height: 32),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black,
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            ),
+            onPressed: () {
+              // Kullanıcıyı Ana Sayfaya Geri Döndürür
+              Navigator.pop(context);
+            },
+            child: const Text('Alışverişe Başla', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+          )
         ],
       ),
     );
@@ -62,12 +75,11 @@ class _CartScreenState extends State<CartScreen> {
           leading: Container(
             width: 60, height: 60,
             decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(10)),
-            child: Image.asset(cartItem.product.imageUrl), 
+            child: Image.asset(cartItem.product.imageUrl),
           ),
           title: Text(cartItem.product.title, style: const TextStyle(fontWeight: FontWeight.bold)),
           subtitle: Text('\$${cartItem.product.price}'),
           
-          // Adet artırma/azaltma butonları
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -76,7 +88,7 @@ class _CartScreenState extends State<CartScreen> {
                 onPressed: () {
                   setState(() {
                     if (cartItem.quantity > 1) {
-                      cartItem.quantity--; // Adeti azalt
+                      cartItem.quantity--; 
                     } else {
                       globalCartItems.removeAt(index); 
                     }
@@ -91,7 +103,7 @@ class _CartScreenState extends State<CartScreen> {
                 icon: const Icon(Icons.add_circle_outline, color: Colors.black),
                 onPressed: () {
                   setState(() {
-                    cartItem.quantity++; // Adeti artır
+                    cartItem.quantity++; 
                   });
                 },
               ),
@@ -148,10 +160,10 @@ class _CartScreenState extends State<CartScreen> {
                       TextButton(
                         onPressed: () {
                           setState(() {
-                            globalCartItems.clear(); // Ödeme sonrası sepeti boşalt
+                            globalCartItems.clear(); 
                           });
-                          Navigator.pop(context); // Dialog'u kapat
-                          Navigator.pop(context); // Ana sayfaya dön
+                          Navigator.pop(context); 
+                          Navigator.pop(context); 
                         },
                         child: const Text("Tamam"),
                       )

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/home_screen.dart'; 
 import 'screens/cart_screen.dart';
 import 'screens/product_detail_screen.dart';
+import 'screens/favorites_screen.dart';
 
 void main() {
   runApp(const MiniKatalogApp());
@@ -26,6 +27,7 @@ class MiniKatalogApp extends StatelessWidget {
         '/': (context) => const HomeScreen(),
         '/cart': (context) => const CartScreen(),
         '/details': (context) => const ProductDetailScreen(),
+        '/favorites': (context) => const FavoritesScreen(),
       },
     );
   }

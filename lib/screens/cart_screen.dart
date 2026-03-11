@@ -62,12 +62,12 @@ class _CartScreenState extends State<CartScreen> {
           leading: Container(
             width: 60, height: 60,
             decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(10)),
-            child: Image.asset(cartItem.product.imageUrl), // Asset kullanımımız aynen devam
+            child: Image.asset(cartItem.product.imageUrl), 
           ),
           title: Text(cartItem.product.title, style: const TextStyle(fontWeight: FontWeight.bold)),
           subtitle: Text('\$${cartItem.product.price}'),
           
-          // PROFESYONEL DOKUNUŞ: Adet artırma/azaltma butonları
+          // Adet artırma/azaltma butonları
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -78,7 +78,7 @@ class _CartScreenState extends State<CartScreen> {
                     if (cartItem.quantity > 1) {
                       cartItem.quantity--; // Adeti azalt
                     } else {
-                      globalCartItems.removeAt(index); // 1'den azsa sepetten çıkar
+                      globalCartItems.removeAt(index); 
                     }
                   });
                 },
@@ -119,7 +119,6 @@ class _CartScreenState extends State<CartScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // PROFESYONEL DOKUNUŞ: Toplam Fiyat Gösterimi
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

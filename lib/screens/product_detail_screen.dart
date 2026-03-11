@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({super.key});
+  const ProductDetailScreen({super.key}); 
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Ürün Görseli
+            // Ürün Görseli ve Hero
             Center(
               child: Container(
                 height: 300,
@@ -32,7 +32,11 @@ class ProductDetailScreen extends StatelessWidget {
                   color: Colors.grey[100],
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Image.asset(product.imageUrl, fit: BoxFit.contain),
+                // 3. YENİ EKLENEN: Detay sayfasındaki Hero widget'ı (tag'ler eşleşmeli)
+                child: Hero(
+                  tag: product.id,
+                  child: Image.asset(product.imageUrl, fit: BoxFit.contain),
+                ),
               ),
             ),
             Padding(
@@ -100,16 +104,14 @@ class ProductDetailScreen extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            // Sepette bu ürün zaten var mı diye kontrol et:
+            // Bir önceki mesajda kurduğumuz Sepet Mantığı
             final existingItemIndex = globalCartItems.indexWhere(
               (item) => item.product.id == product.id,
             );
 
             if (existingItemIndex >= 0) {
-              // Ürün varsa adetini artır
               globalCartItems[existingItemIndex].quantity++;
             } else {
-              // Ürün yoksa yeni bir CartItem olarak ekle
               globalCartItems.add(CartItem(product: product));
             }
 

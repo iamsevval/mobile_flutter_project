@@ -46,6 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    int cartItemCount = globalCartItems.fold(0, (sum, item) => sum + item.quantity);
+
     return Scaffold(
       backgroundColor: Colors.white, 
       appBar: AppBar(
@@ -56,11 +58,43 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(color: Colors.black, fontSize: 28, fontWeight: FontWeight.bold),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_bag_outlined, color: Colors.black, size: 28),
-            onPressed: () {
-              Navigator.pushNamed(context, '/cart');
-            },
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.shopping_bag_outlined, color: Colors.black, size: 28),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cart').then((_) {
+                    setState(() {}); 
+                  });
+                },
+              ),
+              if (cartItemCount > 0) // Sadece sepette ürün varsa sayacı göster
+                Positioned(
+                  right: 8,
+                  top: 8,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      color: Colors.redAccent,
+                      shape: BoxShape.circle,
+                    ),
+                    constraints: const BoxConstraints(
+                      minWidth: 18,
+                      minHeight: 18,
+                    ),
+                    child: Text(
+                      '$cartItemCount',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+            ],
           ),
           const SizedBox(width: 8),
         ],
@@ -77,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+               padding: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
                 color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(15),
@@ -100,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.asset(
-               'assets/banner.jpg', 
+               'assets/banner.jpg',
                 height: 100,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -124,11 +158,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 
                 return GestureDetector(
                   onTap: () {
+                    // Detay sayfasından geri gelindiğinde sepet sayacını güncellemek için then() eklendi
                     Navigator.pushNamed(
                       context, 
                       '/details', 
                       arguments: product, 
-                    );
+                    ).then((_) {
+                      setState(() {});
+                    });
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,9 +179,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
-                            child: Image.asset(
-                              product.imageUrl, 
-                              fit: BoxFit.cover,
+                            child: Hero(
+                              tag: product.id, // Her ürün için benzersiz ID
+                              child: Image.asset(
+                                product.imageUrl,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),

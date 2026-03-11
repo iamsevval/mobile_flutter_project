@@ -59,7 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.shopping_bag_outlined, color: Colors.black, size: 28),
             onPressed: () {
-              // 1. DEĞİŞİKLİK: Sepet sayfası geçişini Named Route ile güncelledik
               Navigator.pushNamed(context, '/cart');
             },
           ),
@@ -101,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.asset(
-               'assets/banner.jpg', // Eklediğin asset aynen duruyor
+               'assets/banner.jpg', 
                 height: 100,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -125,7 +124,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 
                 return GestureDetector(
                   onTap: () {
-                    // 2. DEĞİŞİKLİK: Ürün detay sayfası geçişini Named Route ve Arguments ile güncelledik
                     Navigator.pushNamed(
                       context, 
                       '/details', 
@@ -145,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: Image.asset(
-                              product.imageUrl, // Eklediğin asset aynen duruyor
+                              product.imageUrl, 
                               fit: BoxFit.cover,
                             ),
                           ),

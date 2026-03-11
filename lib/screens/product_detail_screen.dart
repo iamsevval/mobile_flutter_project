@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({super.key}); 
+  const ProductDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,18 @@ class ProductDetailScreen extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            globalCartItems.add(product);
+            // Sepette bu ürün zaten var mı diye kontrol et:
+            final existingItemIndex = globalCartItems.indexWhere(
+              (item) => item.product.id == product.id,
+            );
+
+            if (existingItemIndex >= 0) {
+              // Ürün varsa adetini artır
+              globalCartItems[existingItemIndex].quantity++;
+            } else {
+              // Ürün yoksa yeni bir CartItem olarak ekle
+              globalCartItems.add(CartItem(product: product));
+            }
 
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

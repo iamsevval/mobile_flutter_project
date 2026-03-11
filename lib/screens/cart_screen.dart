@@ -9,6 +9,15 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  // Toplam fiyatı hesaplayan metod
+  double getTotalPrice() {
+    double total = 0;
+    for (var item in globalCartItems) {
+      total += item.product.price * item.quantity;
+    }
+    return total;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,22 +56,46 @@ class _CartScreenState extends State<CartScreen> {
     return ListView.builder(
       itemCount: globalCartItems.length,
       itemBuilder: (context, index) {
-        final product = globalCartItems[index];
+        final cartItem = globalCartItems[index];
         return ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           leading: Container(
             width: 60, height: 60,
             decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(10)),
-            child: Image.asset(product.imageUrl),
+            child: Image.asset(cartItem.product.imageUrl), // Asset kullanımımız aynen devam
           ),
-          title: Text(product.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-          subtitle: Text('\$${product.price}'),
-          trailing: IconButton(
-            icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
-            onPressed: () {
-              setState(() {
-                globalCartItems.removeAt(index); 
-              });
-            },
+          title: Text(cartItem.product.title, style: const TextStyle(fontWeight: FontWeight.bold)),
+          subtitle: Text('\$${cartItem.product.price}'),
+          
+          // PROFESYONEL DOKUNUŞ: Adet artırma/azaltma butonları
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.remove_circle_outline, color: Colors.black54),
+                onPressed: () {
+                  setState(() {
+                    if (cartItem.quantity > 1) {
+                      cartItem.quantity--; // Adeti azalt
+                    } else {
+                      globalCartItems.removeAt(index); // 1'den azsa sepetten çıkar
+                    }
+                  });
+                },
+              ),
+              Text(
+                '${cartItem.quantity}', 
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)
+              ),
+              IconButton(
+                icon: const Icon(Icons.add_circle_outline, color: Colors.black),
+                onPressed: () {
+                  setState(() {
+                    cartItem.quantity++; // Adeti artır
+                  });
+                },
+              ),
+            ],
           ),
         );
       },
@@ -72,29 +105,65 @@ class _CartScreenState extends State<CartScreen> {
   Widget _buildCheckoutButton() {
     return Container(
       padding: const EdgeInsets.all(24),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black, 
-          padding: const EdgeInsets.all(20),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        ),
-        onPressed: () {
-          // Ödeme simülasyonu
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: const Text("Tebrikler!"),
-              content: const Text("Siparişiniz başarıyla alındı."),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text("Tamam"),
-                )
-              ],
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 10,
+            offset: const Offset(0, -5),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // PROFESYONEL DOKUNUŞ: Toplam Fiyat Gösterimi
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Toplam Tutar:', style: TextStyle(fontSize: 18, color: Colors.grey)),
+              Text(
+                '\$${getTotalPrice().toStringAsFixed(2)}', 
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blueAccent)
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black, 
+                padding: const EdgeInsets.all(20),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text("Tebrikler!"),
+                    content: const Text("Siparişiniz başarıyla alındı."),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            globalCartItems.clear(); // Ödeme sonrası sepeti boşalt
+                          });
+                          Navigator.pop(context); // Dialog'u kapat
+                          Navigator.pop(context); // Ana sayfaya dön
+                        },
+                        child: const Text("Tamam"),
+                      )
+                    ],
+                  ),
+                );
+              },
+              child: const Text('Ödemeye Geç', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
             ),
-          );
-        },
-        child: const Text('Ödemeye Geç', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          ),
+        ],
       ),
     );
   }

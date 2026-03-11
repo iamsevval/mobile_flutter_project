@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
-import 'product_detail_screen.dart';
-import 'cart_screen.dart'; 
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -60,11 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.shopping_bag_outlined, color: Colors.black, size: 28),
             onPressed: () {
-              // Sepet sayfası gecişi
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const CartScreen()),
-              );
+              // 1. DEĞİŞİKLİK: Sepet sayfası geçişini Named Route ile güncelledik
+              Navigator.pushNamed(context, '/cart');
             },
           ),
           const SizedBox(width: 8),
@@ -105,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.asset(
-               'assets/banner.jpg',
+               'assets/banner.jpg', // Eklediğin asset aynen duruyor
                 height: 100,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -129,11 +125,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 
                 return GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductDetailScreen(product: product),
-                      ),
+                    // 2. DEĞİŞİKLİK: Ürün detay sayfası geçişini Named Route ve Arguments ile güncelledik
+                    Navigator.pushNamed(
+                      context, 
+                      '/details', 
+                      arguments: product, 
                     );
                   },
                   child: Column(
@@ -149,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: Image.asset(
-                              product.imageUrl,
+                              product.imageUrl, // Eklediğin asset aynen duruyor
                               fit: BoxFit.cover,
                             ),
                           ),

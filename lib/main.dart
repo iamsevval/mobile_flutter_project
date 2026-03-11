@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart'; 
+import 'screens/cart_screen.dart';
+import 'screens/product_detail_screen.dart';
 
 void main() {
   runApp(const MiniKatalogApp());
@@ -11,12 +13,20 @@ class MiniKatalogApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Mini Katalog',
-      theme: ThemeData(
+      debugShowCheckedModeBanner: false, 
+      title: 'Mini Katalog',             
+      theme: ThemeData(                  
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(), 
+      
+      
+      initialRoute: '/', 
+      
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/cart': (context) => const CartScreen(),
+        '/details': (context) => const ProductDetailScreen(),
+      },
     );
   }
 }

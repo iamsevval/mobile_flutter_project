@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import '../models/product.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  final Product product;
-  const ProductDetailScreen({super.key, required this.product});
+  // 1. DEĞİŞİKLİK: Artık dışarıdan zorunlu bir "product" beklemiyoruz.
+  const ProductDetailScreen({super.key}); 
 
   @override
   Widget build(BuildContext context) {
+    // 2. DEĞİŞİKLİK: Yönlendirme (Named Route) ile gelen veriyi (argümanı) burada yakalıyoruz.
+    final product = ModalRoute.of(context)!.settings.arguments as Product;
+
+    // GERİ KALAN TÜM KODLARIN (TASARIM, SEPETE EKLEME, IMAGE.ASSET VB.) BİREBİR AYNI KALDI:
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

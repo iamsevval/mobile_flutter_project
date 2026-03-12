@@ -2,7 +2,9 @@
 
 Bu proje, Flutter eğitimi kapsamında geliştirilmiş, temel e-ticaret özelliklerini (ürün listeleme, arama, detay görüntüleme ve sepet) barındıran bir mobil uygulama taslağıdır. 
 
-Eğitim yönergesinde belirtilen widget yapısı, sayfa geçişleri, UI tasarımı, veri modelleme (JSON simülasyonu) ve proje klasörleme mimarisi kriterlerine %100 uygun olarak tasarlanmıştır.
+Eğitim yönergesinde belirtilen widget yapısı, sayfa geçişleri, UI tasarımı, veri modelleme (JSON simülasyonu) ve proje klasörleme mimarisi kriterlerine uygun olarak tasarlanmıştır.
+
+![Proje Ekran Görüntüsü](/assets/anasayfa.png)
 
 ## ✨ Öne Çıkan Özellikler
 
@@ -12,12 +14,17 @@ Eğitim yönergesinde belirtilen widget yapısı, sayfa geçişleri, UI tasarım
 - **Yerel Varlık Yönetimi:** Uygulama içi görseller internetten (`network`) değil, proje içerisine dahil edilen `assets` klasöründen okunarak performans artırılmıştır.
 - **Sepet Simülasyonu:** Kullanıcılar detay sayfasından ürünleri sepete ekleyebilir ve sepet sayfasında bu ürünleri listeleyip sepetten çıkarabilir.
 
+![Proje Ekran Görüntüsü](/assets/ornekurundetayi.png)
+
 ## 🛠️ Kullanılan Teknolojiler ve Sürüm
 
 - **SDK:** Flutter 3.x & Dart ^3.11.0
 - **Geliştirme Ortamı:** Visual Studio Code / Mac
 - **Test Ortamı:** iOS Simulator / Android Emulator
 - **Paketler:** Sadece temel `material.dart` paketi kullanılmış, dışarıdan ekstra kütüphane dahil edilmemiştir.
+
+![Proje Ekran Görüntüsü](/assets/sepetim.png)
+![Proje Ekran Görüntüsü](/assets/favoriler.png)
 
 ## 🚀 Projeyi Çalıştırma Adımları
 
@@ -26,3 +33,9 @@ Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları i
 1. Repoyu bilgisayarınıza klonlayın:
    ```bash
    git clone [https://github.com/iamsevval/mobile_flutter_project](https://github.com/iamsevval/mobile_flutter_project)
+
+ 
+
+
+   
+

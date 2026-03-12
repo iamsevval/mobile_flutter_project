@@ -30,10 +30,20 @@ Eğitim yönergesinde belirtilen widget yapısı, sayfa geçişleri, UI tasarım
 - **Test Ortamı:** iOS Simulator / Android Emulator
 - **Paketler:** Sadece temel `material.dart` paketi kullanılmış, dışarıdan ekstra kütüphane (state management vb.) dahil edilmeden temel Flutter yapıları (StatefulWidget) ile çözüm üretilmiştir.
 
+
 ## 🚀 Projeyi Çalıştırma Adımları
 
-Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyebilirsiniz:
+Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki komutların tamamını kopyalayıp terminalinize yapıştırabilirsiniz:
 
-1. Repoyu bilgisayarınıza klonlayın:
-   ```bash
-   git clone [https://github.com/iamsevval/mobile_flutter_project.git](https://github.com/iamsevval/mobile_flutter_project.git)
+```bash
+# 1. Repoyu bilgisayarınıza klonlayın
+git clone [https://github.com/iamsevval/mobile_flutter_project.git](https://github.com/iamsevval/mobile_flutter_project.git)
+
+# 2. İndirilen proje klasörünün içine girin
+cd mobile_flutter_project
+
+# 3. Projenin ihtiyaç duyduğu paketleri (bağımlılıkları) yükleyin
+flutter pub get
+
+# 4. Uygulamayı bağlı olan simülatörde veya cihazda çalıştırın
+flutter run

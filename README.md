@@ -5,8 +5,8 @@ Bu proje, Flutter eğitimi kapsamında geliştirilmiş, temel e-ticaret özellik
 Eğitim yönergesinde belirtilen widget yapısı, sayfa geçişleri, UI tasarımı, veri modelleme (JSON simülasyonu) ve proje klasörleme mimarisi kriterlerine uygun olarak tasarlanmıştır.
 
 <p align="center">
-  <img src="/assets/anasayfa.png" width="20%" alt="Ana Sayfa" />
-  &nbsp;&nbsp;&nbsp;&nbsp; <img src="/assets/ornekurundetayi.png" width="20%" alt="Ürün Detayı" />
+  <img src="/assets/anasayfa.png" width="25%" alt="Ana Sayfa" />
+  &nbsp;&nbsp;&nbsp;&nbsp; <img src="/assets/ornekurundetayi.png" width="25%" alt="Ürün Detayı" />
 </p>
 
 ## ✨ Öne Çıkan Özellikler
@@ -19,8 +19,8 @@ Eğitim yönergesinde belirtilen widget yapısı, sayfa geçişleri, UI tasarım
 - **Favori Sistemi:** Kullanıcılar beğendikleri ürünleri favorilerine ekleyip çıkarabilir ve "Favorilerim" sayfasından takip edebilirler.
 
 <p align="center">
-  <img src="/assets/sepetim.png" width="20%" alt="Sepetim" />
-  &nbsp;&nbsp;&nbsp;&nbsp; <img src="/assets/favoriler.png" width="20%" alt="Favoriler" />
+  <img src="/assets/sepetim.png" width="25%" alt="Sepetim" />
+  &nbsp;&nbsp;&nbsp;&nbsp; <img src="/assets/favoriler.png" width="25%" alt="Favoriler" />
 </p>
 
 ## 🛠️ Kullanılan Teknolojiler ve Sürüm
